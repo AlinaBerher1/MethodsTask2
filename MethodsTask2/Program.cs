@@ -1,4 +1,4 @@
-﻿class Task2
+class Task2
 {
     /* Задание 2
 Напишите программу, которая будет выполнять конвертирование валют. 
@@ -29,42 +29,47 @@
                 {
                     Console.WriteLine("Пожалуйста, укажите валюту из перечисленных USD, EUR, UAH:");
                     string currency1 = Console.ReadLine();
-                    if (currency1 != "USD")
+                    if (currency1 != "USD" && currency1 != "EUR" && currency1 != "UAH")
                     {
-                        if (currency1 != "EUR")
-                        {
-                            if (currency1 != "UAH")
-                            {
                                 Console.WriteLine("Формат валюты неверный или не поддерживается");
-                            }
-                        }
                     }
-                break;
+                    else
+                    {
+                        break;
+                    }
                 }
                 while (true);
                 Console.WriteLine("Пожалуйста, введите курс для конвертации в другую валюту:");
                 double rate = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Пожалуйста, выберите и введите валюту из перечисленных USD, EUR, UAH:");
-                string currency2 = Console.ReadLine();
-                if (currency2 == "USD")
+                do
                 {
-                    double usd = USD(amount, rate);
-                    Console.WriteLine("Результат конвертации - " + usd + " USD");
+                    Console.WriteLine("Пожалуйста, выберите валюту для конвертации из перечисленных USD, EUR, UAH:");
+                    string currency2 = Console.ReadLine();
+                    if (currency2 != "USD" && currency2 != "EUR" && currency2 != "UAH")
+                    {
+                        Console.WriteLine("Формат валюты неверный или не поддерживается");
+                    }
+                    else
+                    {
+                        if (currency2 == "USD")
+                        {
+                            double usd = USD(amount, rate);
+                            Console.WriteLine("Результат конвертации - " + usd + " USD");
+                        }
+                        else if (currency2 == "EUR")
+                        {
+                            double eur = EUR(amount, rate);
+                            Console.WriteLine("Результат конвертации - " + eur + " EUR");
+                        }
+                        else if (currency2 == "UAH")
+                        {
+                            double uah = UAH(amount, rate);
+                            Console.WriteLine("Результат конвертации - " + uah + " UAH");
+                        }
+                        break;
+                    }                
                 }
-                else if (currency2 == "EUR")
-                {
-                    double eur = EUR(amount, rate);
-                    Console.WriteLine("Результат конвертации - " + eur + " EUR");
-                }
-                else if (currency2 == "UAH")
-                {
-                    double uah = UAH(amount, rate);
-                    Console.WriteLine("Результат конвертации - " + uah + " UAH");
-                }
-                else
-                {
-                    Console.WriteLine("Формат валюты неверный или не поддерживается");
-                }
+                while (true);
         }
         while (true);
     }
